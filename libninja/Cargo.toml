@@ -10,7 +10,7 @@ default-run = "libninja"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [features]
-commercial = ["libninja_commercial"]
+# commercial = ["libninja_commercial"]
 
 [dependencies]
 anyhow = { version = "1.0.71", features = ["backtrace"] }
@@ -43,7 +43,7 @@ libninja_core = { path = "../core" }
 libninja_mir = { path = "../mir" }
 libninja_hir = { path = "../hir" }
 libninja_mir_rust = { path = "../mir_rust" }
-libninja_commercial = { path = "../commercial", optional = true }
+# libninja_commercial = { path = "../commercial", optional = true }
 ignore = "0.4.21"
 text_io = "0.1.12"
 tracing-subscriber = "0.3.18"
