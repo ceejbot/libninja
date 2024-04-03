@@ -42,3 +42,17 @@ pub fn test_build_full_library_recurly() {
     };
     codegen_rust::generate_rust_library(spec, config).unwrap();
 }
+
+#[test]
+pub fn test_keywords_schema() {
+    let spec = include_str!("../../../test_specs/keywords.yaml");
+    let spec: OpenAPI = serde_yaml::from_str(spec).unwrap();
+    let temp = tempfile::tempdir().unwrap();
+    let spec = extract_spec(&spec).unwrap();
+    let config = Config {
+        name: "Keywords".to_string(),
+        dest: temp.path().to_path_buf(),
+        ..default()
+    };
+    codegen_rust::generate_rust_library(spec, config).expect("the keywords test should pass");
+}

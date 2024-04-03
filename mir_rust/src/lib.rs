@@ -173,7 +173,10 @@ fn sanitize_struct(s: impl AsRef<str>) -> Ident {
 }
 
 pub fn is_restricted(s: &str) -> bool {
-    ["type", "use", "ref", "self", "match", "final"].contains(&s)
+    [
+        "async", "enum", "final", "match", "mut", "ref", "self", "type", "use",
+    ]
+    .contains(&s)
 }
 
 fn assert_valid_ident(s: &str, original: &str) {
