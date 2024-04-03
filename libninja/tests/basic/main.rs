@@ -8,13 +8,14 @@ use serde_yaml::from_str;
 use hir::Language;
 use libninja::generate_library;
 use libninja::rust::generate_example;
-use ln_core::{OutputConfig, PackageConfig};
 use ln_core::extractor::extract_spec;
+use ln_core::{OutputConfig, PackageConfig};
 
 const EXAMPLE: &str = include_str!("link_create_token.rs");
 
 const BASIC: &str = include_str!("../../../test_specs/basic.yaml");
 const RECURLY: &str = include_str!("../../../test_specs/recurly.yaml");
+const KEYWORDS: &str = include_str!("../../../test_specs/keywords.yaml");
 
 #[test]
 fn test_generate_example() {
@@ -58,4 +59,22 @@ pub fn test_build_full_library_recurly() {
         derive: vec![],
     };
     generate_library(spec, opts).unwrap();
+}
+
+#[test]
+pub fn test_keywords_schema() {
+    let spec: OpenAPI = from_str(KEYWORDS).expect("the keywords fixture should be valid yaml");
+    let temp = tempfile::tempdir().unwrap();
+    let opts = OutputConfig {
+        dest_path: temp.path().to_path_buf(),
+        build_examples: false,
+        package_name: "keywords".to_string(),
+        service_name: "Keywords".to_string(),
+        language: Language::Rust,
+        config: Default::default(),
+        github_repo: Some("libninjacom/test".to_string()),
+        version: None,
+        derive: vec![],
+    };
+    generate_library(spec, opts).expect("the keywords test should pass");
 }
