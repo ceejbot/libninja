@@ -640,7 +640,6 @@ dependencies = [
  "include_dir",
  "indexmap",
  "indoc",
- "libninja_commercial",
  "libninja_core",
  "libninja_hir",
  "libninja_macro",
@@ -669,10 +668,6 @@ dependencies = [
  "tracing-subscriber",
  "url",
 ]
-
-[[package]]
-name = "libninja_commercial"
-version = "0.1.0"
 
 [[package]]
 name = "libninja_core"
