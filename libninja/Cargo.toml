@@ -9,6 +9,9 @@ default-run = "libninja"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
+[features]
+# commercial = ["libninja_commercial"]
+
 [dependencies]
 anyhow = { version = "1.0.71", features = ["backtrace"] }
 log = "0.4.19"
