@@ -1,3 +1,4 @@
+use check_keyword::CheckKeyword;
 pub use class::make_class;
 use convert_case::{Case, Casing};
 use mir::parameter::ParamKey;
@@ -147,7 +148,7 @@ pub fn sanitize(s: impl AsRef<str>) -> String {
             c
         })
         .into();
-    if is_restricted(&s) {
+    if s.is_keyword() {
         s += "_"
     }
     if s.chars().next().unwrap().is_numeric() {
@@ -162,7 +163,7 @@ fn sanitize_struct(s: impl AsRef<str>) -> Ident {
     let original = s;
     let s = rewrite_names(s);
     let mut s = s.to_case(Case::Pascal);
-    if is_restricted(&s) {
+    if s.is_keyword() {
         s += "Struct"
     }
     if s == "Self" {
@@ -170,13 +171,6 @@ fn sanitize_struct(s: impl AsRef<str>) -> Ident {
     }
     assert_valid_ident(&s, &original);
     Ident(s)
-}
-
-pub fn is_restricted(s: &str) -> bool {
-    [
-        "async", "enum", "final", "match", "mut", "ref", "self", "type", "use",
-    ]
-    .contains(&s)
 }
 
 fn assert_valid_ident(s: &str, original: &str) {
