@@ -24,10 +24,10 @@ paths:
                     content:
                         application/json:
                             schema:
-                                $ref: "#/components/schemas/dangerNoodle"
+                                $ref: "#/components/schemas/DangerNoodle"
 components:
     schemas:
-        dangerNoodle:
+        DangerNoodle:
             type: object
             properties:
                 async:
