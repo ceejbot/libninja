@@ -279,9 +279,11 @@ impl HirSpec {
     pub fn insert_schema(&mut self, record: impl Into<Record>) {
         let record = record.into();
         let name = record.name().to_string();
+        /*
         if !name.chars().next().unwrap().is_uppercase() {
             panic!("Schema name must be uppercase: {}", name);
         }
+        */
         self.schemas.insert(name, record);
     }
 }
