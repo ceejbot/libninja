@@ -2,7 +2,7 @@ use std::collections::BTreeMap;
 /// The API model.
 /// Higher level compared to code level models in ln-model.
 use std::fmt::Debug;
-use std::iter::{empty, Iterator, once};
+use std::iter::{empty, once, Iterator};
 use std::string::{String, ToString};
 
 use anyhow::Result;
@@ -10,8 +10,8 @@ use convert_case::{Case, Casing};
 use openapiv3 as oa;
 
 pub use lang::*;
-use mir::{Doc, ParamKey};
 use mir::Ty;
+use mir::{Doc, ParamKey};
 
 mod lang;
 
@@ -247,9 +247,11 @@ impl HirSpec {
     pub fn insert_schema(&mut self, record: impl Into<Record>) {
         let record = record.into();
         let name = record.name().to_string();
+        /*
         if !name.chars().next().unwrap().is_uppercase() {
             panic!("Schema name must be uppercase: {}", name);
         }
+        */
         self.schemas.insert(name, record);
     }
 }
